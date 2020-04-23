@@ -6,7 +6,7 @@ https://lit-brook-22563.herokuapp.com/
 
 # Using the Website 
  Provide a URL of an r/india subreddit post in its valid form. The website will seach the post by extracting its postid and predict the flair of the post.   
-The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint.   
+The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint.  **PLEASE NOTE: The heroku servers put a 30 second timeout on the automated endpoint testing, hence a large number of URLs are not being processed currently since it shows timeout error**. 
 # Index 
 1.	Project Description
 2.	Data Extraction 
