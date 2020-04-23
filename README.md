@@ -3,16 +3,21 @@ A machine learning classifier to predict the flairs of posts of the r/india subr
 
 # Website 
 https://lit-brook-22563.herokuapp.com/
+
+# Using the Website 
+ Provide a URL of an r/india subreddit post in its valid form. The website will seach the post by extracting its postid and predict the flair of the post.   
+The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint.   
 # Index 
 1.	Project Description
 2.	Data Extraction 
 3.	Data Pre-processing and Modification
 4.	Model development and Testing
 5.	Model Summary  
+6. References  
  The **‘Main_Project’** folder contains all the html files and the Python files to create the Flask webapp. 
 
 # Project Description
- The project aims to develop a flair detector for the r/India subreddit. The project was developed in Python in Jupyter Notebooks and     deployed using Flask on Heroku. 
+ The project aims to develop a flair detector for the r/India subreddit. The project was developed in Python in Jupyter Notebooks and     deployed using Flask on Heroku.   
  The Jupyter notebooks and their description are as follows:
 
 ### Jupyter Notebooks:
@@ -115,7 +120,7 @@ In the initial runs, the MLP model showed the lowest scores and took more time t
    The highest efficiency for each model was as follows :
    <img src="readme_images/top_models.png" width="900">
 
- Although the Random Forests model had a larger macro precision and weighted precision, **it had a lower F1 score than the Logistic Regression model and took more time to compile**.   
+ Although the Random Forests model had a larger macro precision and weighted precision, **it had a lower F1 score than the Logistic Regression model and took more time to compile**.     
  
  Hence, the **Logistic Regression model was chosen which was trained on the title-comments-stem and stemmed-url features.**
  
@@ -123,20 +128,17 @@ In the initial runs, the MLP model showed the lowest scores and took more time t
  
  The model had a precision of **76%** on a dataset containing about **6000 datapoints.**
  
- # Model Overview
+ # Model Summary
  ### Positives:  
- Trained on a large dataset of about 9000 datapoints.   
- High precision of 76% achieved on the dataset. 
- Some flairs got a precision score of 90%+.   
+ * Trained on a large dataset of about 9000 datapoints.   
+ * High precision of 76% achieved on the dataset. 
+ * Some flairs got a precision score of 90%+.   
  ### Negatives :  
- *Requires text data in comments and titles. Wont work well on unpopular posts with small number of comments.   
- *Some of the posts in Business & Finance and Policy/Economy are mixed up due to a similar word distribution and theme of discussion.   
- *Non Political has a non unique word distribution, hence some posts are not easily identified by the model.  
+ * Requires text data in comments and titles. Wont work well on unpopular posts with small number of comments.   
+ * Some of the posts in Business & Finance and Policy/Economy are mixed up due to a similar word distribution and theme of discussion.   
+ * Non Political has a non unique word distribution, hence some posts are not easily identified by the model.  
  Note: Due to the recent politicisation of the COVID-19 situation, some recent post flaired under the same may be predicted as Politics   by the model. 
  
- # Using the Website 
- Provide a URL of an r/india subreddit post in its valid form. The website will seach the post by extracting its postid and predict the flair of the post.   
-The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint. 
 
 # References
 **Scraping Reddit Data**: https://towardsdatascience.com/scraping-reddit-data-1c0af3040768  
