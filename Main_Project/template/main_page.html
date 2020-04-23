@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Reddit Flair Detector</h1>
+
+<!-- <a href="/">Goto Results</a> -->
+
+<div class="instructions">
+	<p>Provide the link of a post from r/india subreddit. The model will try to predict the flair assigned to the post. 
+	You can also provide a text file with links in each line to output a json file with the predicted flairs for the corresponding links</p>
+
+</div>
+
+<div class="form-reddit">
+	<div id="urlInput">
+		<form action="{{(url_for('flair'))}}" method="POST">
+		  <div class="form-group">
+		    <input type="url" class="form-control" id="urlInputField" aria-describedby="emailHelp" name="redditURL" placeholder="Enter URL">
+		  </div>
+		  <button type="submit" class="btn btn-dark">Predict Flair</button>
+		</form>
+	</div>
+
+	<br><br>
+	<h2>Automated File Testing</h2>
+	<br><br>
+	<div>
+		<form action="/automated_testing" method="POST" enctype="multipart/form-data" class="file-upload" name="fileUpload">
+			<input type="file" name="attachment" placeholder="File">
+			<button type="submit" class="btn-dark btn-sm">Upload Text File</button>
+		</form>
+	</div>
+</div>
+
+{% endblock%}
