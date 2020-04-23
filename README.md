@@ -8,10 +8,10 @@ https://lit-brook-22563.herokuapp.com/
 2.	Data Extraction 
 3.	Data Pre-processing and Modification
 4.	Model development and Testing
-5.	Model Summary
+5.	Model Summary  
  The **‘Main_Project’** folder contains all the html files and the Python files to create the Flask webapp. 
 
-#Project Description
+# Project Description
  The project aims to develop a flair detector for the r/India subreddit. The project was developed in Python in Jupyter Notebooks and     deployed using Flask on Heroku. 
  The Jupyter notebooks and their description are as follows:
 
@@ -56,9 +56,10 @@ The following libraries were used for data exploration and model development –
  
 <img src="readme_images/pushshifts%20api%20post%20count.png" width="500">
 
- The 2 datasets were combined to form the **combined_df.csv**. 
+ The 2 datasets were combined to form the **combined_df.csv**.
  Posts dated before Dec 2018 in the PRAW dataset were removed to avoid  post  duplicacy. 
-  
+ <p> &nbsp; </p>
+ 
   **Combined_df dataset**
 <img src="readme_images/combined%20df%20post%20count.png" width="400">
 
@@ -66,17 +67,15 @@ The following libraries were used for data exploration and model development –
 ### Numerical Data Analysis
  No strong correlation was found in the numerical data of posts. Numerical data points like post scores , title lengths , size of comments etc had no correlation to any particular flair and hence were not used for training the model. 
 
-**Post Scores**
-<img src="readme_images/Post%20scores.png" width="800">
- Many flairs had high score averages. Scores were not used for training the data.
+**Post Scores**  
+<img src="readme_images/Post%20scores.png" width="800">  
+ Many flairs had high score averages. Scores were not used for training the data.  
 **Number of Post Comments**
 <img src="readme_images/number%20of%20comments.png" width="800">
  
  ### Data Cleaning
- The text data was processed to be used as training data for the ML model. First, posts with null values were removed.
- 
-                
-  <img src="readme_images/null%20values.png">
+ The text data was processed to be used as training data for the ML model. First, posts with null values were removed.               
+  <img src="readme_images/null_values2.png">
   
   The title and comment texts for all the posts were cleaned and processed. 
 1.	First, text was converted to lower form and all forms of punctuation were removed 
@@ -90,5 +89,58 @@ This was done by removing the relatively unpopular posts from the flairs with mo
 ### Extending the list of Stopwords 
 To increase model efficiciency, a word count was obtained from each flair using the CountVectorizer and the commonly occurring words from each flair were removed by extending them into the list of stopwords. 
 
+<img src="readme_images/politics_word_before.png" width="400">    <img src="readme_images/politics_word_after.png" width="400">
+
+
+This was done similarly on the **stemmed titles and stemmed URLs**  
+and their corresponding list of stopwords extended and the words removed. 
+
+# Model Development and Testing 
+
+The following models were used –  
+ **Linear Regression	,   Random Forests,	   Multi Layer Perceptron	,   Support Vector Machine	,   Naïve Bayes Classifier**
+ 
+ They were used alongside a **CountVectorizer and TfIdf Transformer** in a pipeline. 
+Model parameters were found using GridsearchCV for each ML model.   
+In the initial runs, the MLP model showed the lowest scores and took more time to compile hence was removed from further testing. 
+
+ The models were trained on 2 datasets:  
+ * the combined dataframe(more posts but also more post count disparity between flairs)  
+ 
+ * stripped dataframe(relatively equal number of posts for each flair)
+  **Although, more efficiency was found in the larger dataset**
+  
+  <img src="readme_images/model_training.png" width="800">
+  
+   The highest efficiency for each model was as follows :
+   <img src="readme_images/top_models.png" width="900">
+
+ Although the Random Forests model had a larger macro precision and weighted precision, **it had a lower F1 score than the Logistic Regression model and took more time to compile**.   
+ 
+ Hence, the **Logistic Regression model was chosen which was trained on the title-comments-stem and stemmed-url features.**
+ 
+ <img src="readme_images/classification_report.png" width="500">
+ 
+ The model had a precision of **76%** on a dataset containing about **6000 datapoints.**
+ 
+ # Model Overview
+ ### Positives:  
+ Trained on a large dataset of about 9000 datapoints.   
+ High precision of 76% achieved on the dataset. 
+ Some flairs got a precision score of 90%+.   
+ ### Negatives :  
+ *Requires text data in comments and titles. Wont work well on unpopular posts with small number of comments.   
+ *Some of the posts in Business & Finance and Policy/Economy are mixed up due to a similar word distribution and theme of discussion.   
+ *Non Political has a non unique word distribution, hence some posts are not easily identified by the model.  
+ Note: Due to the recent politicisation of the COVID-19 situation, some recent post flaired under the same may be predicted as Politics   by the model. 
+ 
+ # Using the Website 
+ Provide a URL of an r/india subreddit post in its valid form. The website will seach the post by extracting its postid and predict the flair of the post.   
+The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint. 
+
+# References
+**Scraping Reddit Data**: https://towardsdatascience.com/scraping-reddit-data-1c0af3040768  
+**Using pushshifts api**: https://medium.com/@RareLoot/using-pushshifts-api-to-extract-reddit-submissions-fb517b286563  
+**Deploying to Heroku**:  https://www.geeksforgeeks.org/deploy-python-flask-app-on-heroku/
 
 
