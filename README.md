@@ -76,7 +76,8 @@ The following libraries were used for data exploration and model development –
 <img src="readme_images/Post%20scores.png" width="800">  
  Many flairs had high score averages. Scores were not used for training the data.  
 **Number of Post Comments**
-<img src="readme_images/number%20of%20comments.png" width="800">
+<img src="readme_images/number%20of%20comments.png" width="800">  
+ Almost all the flairs had a similar number of comments. Hence, comments could be used for training the model without creating bias and disparities.   
  
  ### Data Cleaning
  The text data was processed to be used as training data for the ML model. First, posts with null values were removed.               
