@@ -42,12 +42,12 @@ Politics			    Non-Political			    AskIndia	    Policy/Economy
 Business/Finance 	Science/Technology		Sports		    Food
 Photography 		  CAA-NRC-NPR			      Coronavirus	  Rediquette
 The following number of datapoints were extracted from each flair
-![Praw Dataset] (readme_images/praw%20dataset%20post%20count.png)
+![Praw Dataset](readme_images/praw%20dataset%20post%20count.png)
 
 **Body was the primary content missing even in the most popular posts** and subsequent post extractions, 
 hence it was removed as a training feature. 
 
-![Missing Features] (readme_images/post%20body%20heatmap.png)
+![Missing Features](readme_images/post%20body%20heatmap.png)
 
 ### Using Pushshifts API to get more Data
 To increase the size of our training data, we used the Pushshifts API to extract more posts from Reddit.
