@@ -5,7 +5,10 @@ import script
 import os
 import sklearn
 import pandas as pd
+#from celery import Celery
+
 app = Flask(__name__)
+
 
 
 @app.route("/flair", methods=['POST'])
@@ -44,7 +47,7 @@ def automated_testing_file():
 	#to prevent model loading multiple times, we will define predict function here only
 	
 
-	if 'attachment' not in request.files:
+	if 'upload_file' not in request.files:
 		if 'url' not in request.args:
 			return render_template('error_gen_page.html', error_message="No input provided")
 
@@ -68,13 +71,13 @@ def automated_testing_file():
 
 				return jsonify(final_result)
 
-	elif 'attachment' in request.files:
+	elif 'upload_file' in request.files:
 		dirname = os.path.dirname(__file__)
 		filename = str(dirname) + "trained_pipeline_pickle.sav"
 		print(dirname, " ",filename)
-		attachment = request.files['attachment']
+		upload_file = request.files['upload_file']
 
-		urls = attachment.read()
+		urls = upload_file.read()
 		urls = urls.decode("utf-8")
 
 		print("\n\n")
@@ -86,8 +89,10 @@ def automated_testing_file():
 		print(urls_list)
 
 		array = []
+		#arr=[]
 		filename='trained_pipeline_pickle.sav'
 		model_load=pickle.load(open(filename, 'rb'))
+		#array=automated_testing_output.delay(urls_list,arr)  try and add this to redis backend
 
 
 		for url in urls_list:
