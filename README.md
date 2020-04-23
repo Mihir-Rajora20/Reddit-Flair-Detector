@@ -1,7 +1,7 @@
 # Reddit-Flair-Detector
 A machine learning classifier to predict the flairs of posts of the r/india subreddit deployed to Heroku using the Flask API
 
-#Website 
+# Website 
 https://lit-brook-22563.herokuapp.com/
 
 # Index 
@@ -10,7 +10,7 @@ https://lit-brook-22563.herokuapp.com/
 3.	Data Pre-processing and Modification
 4.	Model development and Testing
 5.	Model Summary
-The ‘Main_Project’ folder contains all the html files and the Python files to create the Flask webapp. 
+The **‘Main_Project’** folder contains all the html files and the Python files to create the Flask webapp. 
 
 #Project Description
 The project aims to develop a flair detector for the r/India subreddit. The project was developed in Python in Jupyter Notebooks and deployed using Flask on Heroku. 
@@ -42,17 +42,16 @@ Politics			    Non-Political			    AskIndia	    Policy/Economy
 Business/Finance 	Science/Technology		Sports		    Food
 Photography 		  CAA-NRC-NPR			      Coronavirus	  Rediquette
 The following number of datapoints were extracted from each flair
-![Praw Dataset] (https://drive.google.com/open?id=1GrP6K4VQWqBy4Qa1gAO_XbuoNYRWHE6C)
+![Praw Dataset] (readme_images/praw%20dataset%20post%20count.png)
 
 **Body was the primary content missing even in the most popular posts** and subsequent post extractions, 
 hence it was removed as a training feature. 
 
-![Missing Features] (https://drive.google.com/open?id=1mzOy7AubD_PkmhqjEXnfQxculPAAbt22)
+![Missing Features] (readme_images/post%20body%20heatmap.png)
 
 ### Using Pushshifts API to get more Data
 To increase the size of our training data, we used the Pushshifts API to extract more posts from Reddit.
 To avoid data duplicacy between this data and the previous extraction, posts dated before 2018 December were removed from the PRAW dataset. 
 The following datapoints were obtained from the Pushshifts API
-![Pushshifts Post count](https://drive.google.com/open?id=14To5ojrFJm1Bait6OHpWU0oCUBk8Hqgu)
-
+![Pushshifts Post count](readme_images/pushshifts%20api%20post%20count.png)
 
