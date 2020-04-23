@@ -81,7 +81,7 @@ The following libraries were used for data exploration and model development –
  
  ### Data Cleaning
  The text data was processed to be used as training data for the ML model. First, posts with null values were removed.               
-  <img src="readme_images/null_values2.png">
+  <img src="readme_images/null_values2.png" width="200">
   
   The title and comment texts for all the posts were cleaned and processed. 
 1.	First, text was converted to lower form and all forms of punctuation were removed 
@@ -89,7 +89,8 @@ The following libraries were used for data exploration and model development –
 Stemming was chosen since we do not require the actual meaning of the text data, but rather we are searching for unique text identifiers from each flair and do not require a vocabulary to maintain word meaning. 
 3.	URL and post titles were processed similarly. 
 
-As is apparent from the flair count for the combined_df dataset, there is a post count disparity between the flairs, with some having exceedingly high number of posts while others having low number of posts. Hence, datasets strip_data and sec_strip_data were created from the original dataset which had an equivalent number of posts for each flair. 
+As is apparent from the flair count for the combined_df dataset, there is a post count disparity between the flairs, with some having exceedingly high number of posts while others having low number of posts.  
+Hence, datasets **strip_data and sec_strip_data** were created from the original dataset which had an equivalent number of posts for each flair. 
 This was done by removing the relatively unpopular posts from the flairs with more post count.
 
 ### Extending the list of Stopwords 
@@ -113,8 +114,9 @@ In the initial runs, the MLP model showed the lowest scores and took more time t
  The models were trained on 2 datasets:  
  * the combined dataframe(more posts but also more post count disparity between flairs)  
  
- * stripped dataframe(relatively equal number of posts for each flair)
-  **Although, more efficiency was found in the larger dataset**
+ * stripped dataframe(relatively equal number of posts for each flair)  
+
+ **Although, more efficiency was found in the larger dataset**
   
   <img src="readme_images/model_training.png" width="800">
   
