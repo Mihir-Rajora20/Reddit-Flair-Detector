@@ -21,12 +21,12 @@ The automated testing point accepts a .txt documents with a post link in each li
  The Jupyter notebooks and their description are as follows:
 
 ### Jupyter Notebooks:
-*	Praw Data Extraction :Extracting Data using the Praw API 
-*	Data Extraction using pushshifts : Extending the training set using the Pushshifts API
-*	Data Pre-Processing: Processing the data in the different datasets and subsequent subsets produced. 
-*	Data Exploration and Modification: Modifying the training set, finding data correlation and structure of data values and creating other modified databases. 
-*	Model Training: training the different models on variety of features and choosing the final model. 
-*	Flair Prediction Model: contains the final model and data processing functions to predict post flair from the input URL. 
+*	Praw Data Extraction :Extracting Data using the Praw API (Part 1)
+*	Data Extraction using pushshifts : Extending the training set using the Pushshifts API (Part 1)  
+*	Data Pre-Processing: Processing the data in the different datasets and subsequent subsets produced. (Part 2) 
+*	Data Exploration and Modification: Modifying the training set, finding data correlation and structure of data values and creating other modified databases. (Part 2)  
+*	Model Training: training the different models on variety of features and choosing the final model.(Part 3)   
+*	Flair Prediction Model: contains the final model and data processing functions to predict post flair from the input URL.(Part 3) 
 
 ### Libraries Used:
 The following libraries were used for data exploration and model development –
