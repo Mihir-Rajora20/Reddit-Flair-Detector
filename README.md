@@ -6,7 +6,7 @@ https://lit-brook-22563.herokuapp.com/
 
 # Using the Website 
  Provide a URL of an r/india subreddit post in its valid form. The website will seach the post by extracting its postid and predict the flair of the post.   
-The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint.   
+The automated testing point accepts a .txt documents with a post link in each line, and will return a json file in the output endpoint.  **PLEASE NOTE: The heroku servers put a 30 second timeout on the automated endpoint testing, hence a large number of URLs are not being processed currently since it shows timeout error**. 
 # Index 
 1.	Project Description
 2.	Data Extraction 
@@ -125,7 +125,7 @@ In the initial runs, the MLP model showed the lowest scores and took more time t
 
  Although the Random Forests model had a larger macro precision and weighted precision, **it had a lower F1 score than the Logistic Regression model and took more time to compile**.     
  
- Hence, the **Logistic Regression model was chosen which was trained on the title-comments-stem and stemmed-url features.**
+ Hence, the **Logistic Regression model was chosen which was trained on the title-comments-combined and stemmed-url features.**
  
  <img src="readme_images/classification_report.png" width="500">
  
@@ -140,7 +140,7 @@ In the initial runs, the MLP model showed the lowest scores and took more time t
  * Requires text data in comments and titles. Wont work well on unpopular posts with small number of comments.   
  * Some of the posts in Business & Finance and Policy/Economy are mixed up due to a similar word distribution and theme of discussion.   
  * Non Political has a non unique word distribution, hence some posts are not easily identified by the model.  
- Note: Due to the recent politicisation of the COVID-19 situation, some recent post flaired under the same may be predicted as Politics   by the model. 
+ Note: Due to the recent politicisation of the Coronavirus situation, some recent post flaired under the same may be predicted as Politics   by the model. 
  
 
 # References
