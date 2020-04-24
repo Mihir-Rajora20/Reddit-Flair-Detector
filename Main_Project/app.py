@@ -1,4 +1,5 @@
 from flask import Flask, render_template,request, jsonify, redirect, url_for, flash
+import json
 from werkzeug.utils import secure_filename
 import pickle
 import script
@@ -44,7 +45,7 @@ def flair():
 @app.route("/automated_testing", methods=['POST'])
 def automated_testing_file():
 	
-	#to prevent model loading multiple times, we will define predict function here only
+	#to prevent model loading multiple times, we will define predict function here only(previously defined in script.py)
 	
 
 	if 'upload_file' not in request.files:
@@ -64,12 +65,10 @@ def automated_testing_file():
 				
 				predicted_flair = prediction
 
-				final_result = {
-					"key": URL,
-					"value": predicted_flair
-				}
+				final_result = {URL:predicted_flair}
+				op=json.dumps(final_result)
+				return op
 
-				return jsonify(final_result)
 
 	elif 'upload_file' in request.files:
 		dirname = os.path.dirname(__file__)
@@ -88,7 +87,7 @@ def automated_testing_file():
 
 		print(urls_list)
 
-		array = []
+		output_dict={}
 		#arr=[]
 		filename='trained_pipeline_pickle.sav'
 		model_load=pickle.load(open(filename, 'rb'))
@@ -99,11 +98,7 @@ def automated_testing_file():
 			check_error, error_message = script.check_valid_url(url)
 
 			if check_error == False:
-				element = {
-					"key": url,
-					"value": str("Link error " + error_message)
-				}
-				array.append(element)
+				output_dict.update({url:str("Link Error:"+error_message)})
 
 			else:
 				post_id= (str(url))[40:46]
@@ -113,15 +108,12 @@ def automated_testing_file():
 				pred_flair=model_load.predict(req_data)
 				pred_flair=pred_flair[0]
 				prediction,actual_flair=pred_flair,topics_data['flair']
+				output_dict.update({url:prediction})
 
-				element = {
-					"key": url,
-					"value": prediction
-				}
 
-				array.append(element)
-			
-		return jsonify(array[:-1])
+		op=json.dumps(output_dict)
+		return op	
+#		return jsonify(output_dict)
 
 @app.route("/")
 def home():
